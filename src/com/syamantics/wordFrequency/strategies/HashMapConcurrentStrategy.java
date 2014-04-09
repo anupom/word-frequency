@@ -17,7 +17,7 @@ import com.syamantics.wordFrequency.WordEntry;
  * 
  * @author asyam
  */
-public class CountWithHashMapConcurrentStrategy implements
+public class HashMapConcurrentStrategy implements
 		IWordCountingStrategy {
 
 	// Parallelism level
@@ -25,7 +25,7 @@ public class CountWithHashMapConcurrentStrategy implements
 
 	ConcurrentHashMap<String, AtomicInteger> map;
 
-	public CountWithHashMapConcurrentStrategy() {
+	public HashMapConcurrentStrategy() {
 		map = new ConcurrentHashMap<>();
 	}
 

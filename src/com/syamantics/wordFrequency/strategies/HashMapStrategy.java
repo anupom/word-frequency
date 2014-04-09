@@ -14,11 +14,11 @@ import com.syamantics.wordFrequency.WordEntry;
  * 
  * @author asyam
  */
-public class CountWithHashMapStrategy implements IWordCountingStrategy {
+public class HashMapStrategy implements IWordCountingStrategy {
 
 	private HashMap<String, Integer> map;
 
-	public CountWithHashMapStrategy() {
+	public HashMapStrategy() {
 		map = new HashMap<>();
 	}
 

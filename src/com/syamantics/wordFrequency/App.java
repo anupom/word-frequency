@@ -6,9 +6,9 @@ import java.util.List;
 import com.syamantics.charReaders.ASCIICharReader;
 import com.syamantics.charReaders.AbstractCharReader;
 import com.syamantics.charReaders.UTFCharReader;
-import com.syamantics.wordFrequency.strategies.CountWithHashMapConcurrentStrategy;
-import com.syamantics.wordFrequency.strategies.CountWithHashMapStrategy;
-import com.syamantics.wordFrequency.strategies.CountWithTrieStrategy;
+import com.syamantics.wordFrequency.strategies.HashMapConcurrentStrategy;
+import com.syamantics.wordFrequency.strategies.HashMapStrategy;
+import com.syamantics.wordFrequency.strategies.TrieStrategy;
 import com.syamantics.wordFrequency.strategies.IWordCountingStrategy;
 
 /**
@@ -37,9 +37,9 @@ public class App {
 		charReaders.put(CharReaders.UTF, new UTFCharReader());
 		
 		strategies = new HashMap<Strategies, IWordCountingStrategy>();
-		strategies.put(Strategies.TRIE, new CountWithTrieStrategy());
-		strategies.put(Strategies.HASHMAP, new CountWithHashMapStrategy());
-		strategies.put(Strategies.CONCURRENT, new CountWithHashMapConcurrentStrategy());
+		strategies.put(Strategies.TRIE, new TrieStrategy());
+		strategies.put(Strategies.HASHMAP, new HashMapStrategy());
+		strategies.put(Strategies.CONCURRENT, new HashMapConcurrentStrategy());
 	}
 
 	public static void main(String[] args) {

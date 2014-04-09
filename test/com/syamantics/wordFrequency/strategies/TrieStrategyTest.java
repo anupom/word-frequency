@@ -14,7 +14,7 @@ import org.mockito.stubbing.Answer;
 import com.syamantics.charReaders.AbstractCharReader;
 import com.syamantics.wordFrequency.WordEntry;
 
-public class CountWithTrieStrategyTest {
+public class TrieStrategyTest {
 
 	private static final String TEST_STRING = "the ant an ant a ant the man the dog the b c a";
 
@@ -39,7 +39,7 @@ public class CountWithTrieStrategyTest {
 			}
 		});
 
-		CountWithTrieStrategy strategy = new CountWithTrieStrategy();
+		TrieStrategy strategy = new TrieStrategy();
 		strategy.updateCount(charReader);
 		Queue<WordEntry> queue = strategy.getTopWords(3);
 

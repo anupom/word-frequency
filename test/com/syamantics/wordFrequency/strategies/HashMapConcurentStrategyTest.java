@@ -15,7 +15,7 @@ import org.mockito.stubbing.Answer;
 import com.syamantics.charReaders.AbstractCharReader;
 import com.syamantics.wordFrequency.WordEntry;
 
-public class CountWithHashMapConcurentStrategyTest {
+public class HashMapConcurentStrategyTest {
 
 	private static final String TEST_STRING = "the ant an ant a ant the man the dog the b c a";
 
@@ -34,7 +34,7 @@ public class CountWithHashMapConcurentStrategyTest {
 			}
 		});
 
-		CountWithHashMapConcurrentStrategy strategy = new CountWithHashMapConcurrentStrategy();
+		HashMapConcurrentStrategy strategy = new HashMapConcurrentStrategy();
 		strategy.updateCount(charReader);
 		Queue<WordEntry> queue = strategy.getTopWords(3);
 

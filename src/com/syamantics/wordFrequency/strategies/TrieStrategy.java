@@ -14,11 +14,11 @@ import com.syamantics.wordFrequency.WordEntry;
  * 
  * @author asyam
  */
-public class CountWithTrieStrategy implements IWordCountingStrategy {
+public class TrieStrategy implements IWordCountingStrategy {
 
 	private Trie trie;
 
-	public CountWithTrieStrategy() {
+	public TrieStrategy() {
 		trie = new Trie();
 	}
 
