@@ -8,6 +8,12 @@ import com.syamantics.dataStructures.heap.BoundedPriorityQueue;
 import com.syamantics.dataStructures.trie.Trie;
 import com.syamantics.wordFrequency.WordEntry;
 
+/**
+ * Word Counting Strategy implementation using Trie.
+ * Only works for English words.
+ * 
+ * @author asyam
+ */
 public class CountWithTrieStrategy implements IWordCountingStrategy {
 
 	private Trie trie;
@@ -39,6 +45,7 @@ public class CountWithTrieStrategy implements IWordCountingStrategy {
 				node.markAsWord();
 				startWord = false;
 			}
+			// Non alphabetics and no word ended...
 		}
 
 		// For the last evaluated node
@@ -49,8 +56,8 @@ public class CountWithTrieStrategy implements IWordCountingStrategy {
 
 	@Override
 	public Queue<WordEntry> getTopWords(int n) {
-		BoundedPriorityQueue<WordEntry> boundedMaxHeap = new BoundedPriorityQueue<>(
-				n);
+		BoundedPriorityQueue<WordEntry> boundedMaxHeap =
+				new BoundedPriorityQueue<>(n);
 
 		List<Trie.Node> list = trie.getAllWordNodes();
 		for (Trie.Node node : list) {

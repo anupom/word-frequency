@@ -4,6 +4,13 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * A simple Trie (prefix tree) implementation that can store 
+ * lower cased English words.
+ * Also keeps count of the words they are inserted and marked.
+ * 
+ * @author asyam
+ */
 public class Trie {
 
 	private Node root;
@@ -44,16 +51,16 @@ public class Trie {
 	public static class Node {
 		private Node parent;
 		private Node[] children;
-		private char ch;
+		private char character;
 		private int count;
 
 		public Node() {
 			children = new Node[26];
 		}
 
-		public Node(char ch, Node parent) {
+		public Node(char character, Node parent) {
 			this();
-			this.ch = ch;
+			this.character = character;
 			this.parent = parent;
 		}
 
@@ -75,7 +82,7 @@ public class Trie {
 		}
 
 		public char getCharacter() {
-			return ch;
+			return character;
 		}
 
 		public boolean isWord() {

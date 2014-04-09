@@ -1,5 +1,11 @@
 package com.syamantics.wordFrequency;
 
+/**
+ * Simple object to define model for a word entry.
+ * Contains word and its number of occurrences.
+ * 
+ * @author asyam
+ */
 public class WordEntry implements Comparable<WordEntry> {
 
 	private String word;

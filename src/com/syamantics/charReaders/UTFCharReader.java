@@ -1,5 +1,10 @@
 package com.syamantics.charReaders;
 
+/**
+ * Provides easy API to read characters from UTF encoded text files.
+ * 
+ * @author asyam
+ */
 public class UTFCharReader extends AbstractCharReader {
 
 	@Override

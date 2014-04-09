@@ -11,8 +11,17 @@ import com.syamantics.charReaders.AbstractCharReader;
 import com.syamantics.dataStructures.heap.BoundedPriorityQueue;
 import com.syamantics.wordFrequency.WordEntry;
 
+/**
+ * Word Counting Strategy implementation using a parallel algorithm.
+ * Uses ConcurrentHashMap and AtomicInteger internally for concurrency.
+ * 
+ * @author asyam
+ */
 public class CountWithHashMapConcurrentStrategy implements
 		IWordCountingStrategy {
+
+	// Parallelism level
+	private static final int PARALLELISM = 4;
 
 	ConcurrentHashMap<String, AtomicInteger> map;
 
@@ -24,7 +33,7 @@ public class CountWithHashMapConcurrentStrategy implements
 	public void updateCount(AbstractCharReader charReader) {
 		WordCountTask counter = new WordCountTask(charReader, 0,
 				charReader.limit(), map);
-		ForkJoinPool pool = new ForkJoinPool(4);
+		ForkJoinPool pool = new ForkJoinPool(PARALLELISM);
 		pool.invoke(counter);
 	}
 
@@ -34,8 +43,8 @@ public class CountWithHashMapConcurrentStrategy implements
 				n);
 
 		for (Entry<String, AtomicInteger> pair : map.entrySet()) {
-			boundedMaxHeap.add(new WordEntry(pair.getKey(), pair.getValue()
-					.intValue()));
+			boundedMaxHeap.add(new WordEntry(pair.getKey(),
+					pair.getValue().intValue()));
 		}
 
 		return boundedMaxHeap;
@@ -50,6 +59,7 @@ public class CountWithHashMapConcurrentStrategy implements
 		int endPos;
 		private ConcurrentHashMap<String, AtomicInteger> map;
 
+		// Don't divide it further if number of characters is less than this value
 		private static final int THRESHOLD = 100_000;
 
 		public WordCountTask(AbstractCharReader charReader, int startPos,
@@ -78,6 +88,7 @@ public class CountWithHashMapConcurrentStrategy implements
 					addToMap(sb);
 					startWord = false;
 				}
+				// Non alphabetics and no word ended...
 			}
 
 			if (sb.length() > 0) {

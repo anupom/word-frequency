@@ -8,6 +8,12 @@ import com.syamantics.charReaders.AbstractCharReader;
 import com.syamantics.dataStructures.heap.BoundedPriorityQueue;
 import com.syamantics.wordFrequency.WordEntry;
 
+/**
+ * Word Counting Strategy implementation using plain HashMap.
+ * Only works for English words.
+ * 
+ * @author asyam
+ */
 public class CountWithHashMapStrategy implements IWordCountingStrategy {
 
 	private HashMap<String, Integer> map;
@@ -35,6 +41,7 @@ public class CountWithHashMapStrategy implements IWordCountingStrategy {
 				addToMap(sb);
 				startWord = false;
 			}
+			// Non alphabetics and no word ended...
 		}
 
 		if (sb.length() > 0) {
@@ -53,12 +60,12 @@ public class CountWithHashMapStrategy implements IWordCountingStrategy {
 
 	@Override
 	public Queue<WordEntry> getTopWords(int n) {
-		BoundedPriorityQueue<WordEntry> boundedMaxHeap = new BoundedPriorityQueue<>(
-				n);
+		BoundedPriorityQueue<WordEntry> boundedMaxHeap = 
+				new BoundedPriorityQueue<>(n);
 
 		for (Map.Entry<String, Integer> pair : map.entrySet()) {
-			boundedMaxHeap.add(new WordEntry(pair.getKey(), pair.getValue()
-					.intValue()));
+			boundedMaxHeap.add(new WordEntry(pair.getKey(),
+					pair.getValue().intValue()));
 		}
 
 		return boundedMaxHeap;
